@@ -1,7 +1,7 @@
 # Security Onion Setup: Standalone Mode + Simulation using Two Devices (Laptops)
 This is a documentation of my personal setup, where I use two laptops to do a **Security Onion Standalone Installation** in ***Laptop 1***, and **Network Traffic Simulation** in ***Laptop 2***. 
 
-![Diagram](https://github.com/zaki-ananda/SecurityOnion-LibvirtSetup/blob/main/Security%20Onion%20-%20Two%20Laptop.drawio%20(3).png)
+![Diagram](https://github.com/zaki-ananda/SecurityOnion-LibvirtSetup/blob/main/Security%20Onion%20-%20Two%20Laptop.drawio%20(4).png)
 
 ## Laptop 1 Setup
 Standalone mode requires two NICs to be present, which means that you can't install it on laptop baremetal (since most laptop only has one NIC). Therefore, you have to use a VM to create an instance with two NICs. In this case, I used libvirt/QEMU hypervisor to host the installation. 
