@@ -11,7 +11,7 @@ Here, two laptops is used because Security Onion has a very high system requirem
 - 16GB RAM
 - 200GB Storage
 
-which is quite expensive for it to be hosted on a VM insided a laptop. Therefore, I offloaded the installation to another laptop. Other than the Security Onion ISO file and the VM instance itself, it only houses the bare minimum of utilities and GUI. In this case, I'm using a Xubuntu with an additional installation of virt-manager.
+which is quite expensive for it to be hosted on a VM insided a laptop. Therefore, I offloaded the installation to Laptop 1. Other than the Security Onion ISO file and the VM instance itself, it only houses the bare minimum of utilities and GUI. In this case, I'm using a Xubuntu with an additional installation of virt-manager.
 
 <br>
 
