@@ -91,7 +91,7 @@ By this point, we've finished our configuration for Laptop 1
 ## 2. Laptop 2 Setup
 In Laptop 2, we'll accomplish two goals: setting up the management network in order to access the Security Onion Console, and creating a network simulation consisting of two hosts connected to a SPAN-capable switch. Luckily for us, Laptop 2 doesn't have a high-spec system requirement, as it only need to be capable of hosting two (relatively lightweight) VM instance at the same time. Do note that I'm assuming you have a baremetal installation of Linux for Laptop 2 ready to go, as using Windows is beyond the scope of this documentation.
 
-## 2.1. Seeting Up Management Network
+## 2.1. Setting Up Management Network
 In Laptop 1, we've created VLAN 100 for the management network. Here, we'll connect the Laptop 2 userspace to said VLAN. This can be done with the following command:
 ```
    $ nmcli con add con-name vlan100 ifname vlan100 type vlan dev eno1 id 100 ipv4.method manual ipv6.method disabled ipv4.address '192.168.60.4/24'
