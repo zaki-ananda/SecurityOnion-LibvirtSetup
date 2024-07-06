@@ -91,7 +91,7 @@ By this point, we've finished our configuration for Laptop 1
 ## 2. Laptop 2 Setup
 In Laptop 2, we'll accomplish two goals: setting up the management network in order to access the Security Onion Console, and creating a network simulation consisting of two hosts connected to a SPAN-capable switch. Luckily for us, Laptop 2 doesn't have a high-spec system requirement, as it only need to be capable of hosting two (relatively lightweight) VM instance at the same time. Do note that I'm assuming you have a baremetal installation of Linux for Laptop 2 ready to go, as using Windows is beyond the scope of this documentation.
 
-## 2.1. Setting Up Management Network
+### 2.1. Setting Up Management Network
 In Laptop 1, we've created VLAN 100 for the management network. Here, we'll connect the Laptop 2 userspace to said VLAN. This can be done with the following command:
 ```
    $ nmcli con add con-name vlan100 ifname vlan100 type vlan dev eno1 id 100 ipv4.method manual ipv6.method disabled ipv4.address '192.168.60.4/24'
@@ -111,10 +111,10 @@ By this point, this is what we've managed to set up.
 
 <br>
 
-## 2.2. Creating Network Simulation
+### 2.2. Creating Network Simulation
 In Laptop 1, we've created VLAN 300 for sniffing network. In Laptop 1, we'll create a network simulation that it can sniff from. There are two things that we need to accomplish here:
 
-### 2.2.1. Creating Network Switch
+#### 2.2.1. Creating Network Switch
 Here, I'm using OpenvSwitch in order to emulate a SPAN-capable network switch. This is done by the following command:
 ```
    $ nmcli con add con-name vlan300 ifname vlan300 type vlan dev eno1 id 300 ipv4.method manual ipv6.method disabled ipv4.method disabled
@@ -141,7 +141,7 @@ More information can be obtained [here](https://backreference.org/2014/06/17/por
 By this point, this is what we've managed to set up.
 ![Diagram](https://github.com/zaki-ananda/SecurityOnion-LibvirtSetup/blob/main/Security%20Onion%20-%20Two%20Laptop-Page-5.drawio.png)
 
-### 2.2.2. Creating Network Host
+#### 2.2.2. Creating Network Host
 I recommend using a Kali Linux Live ISO as hosts, so that they won't need any persistent storage on the Laptop 2's storage drive, and so that you can simulate actual attack scenarios using pre-installed tools. I'm also assuming that you're using virt-manager (or libvirt) to set up the network host. I won't go over the installation process here (as it should be intuitive enough, if you've managed to reach here), but one thing to note is that **you need to change the XML config for each of the VM instance's NIC, so that it can connect to the OpenvSwitch network bridge**. More information can be seen [here](https://docs.openvswitch.org/en/latest/howto/libvirt/). For virt-manager GUI, you might need to enable XML editing first (Main window - Edit - Preferences - Enable XML editing)
 
 Finally, this is what we've done so far.
