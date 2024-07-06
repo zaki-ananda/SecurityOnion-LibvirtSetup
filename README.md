@@ -120,7 +120,7 @@ Here, I'm using OpenvSwitch in order to emulate a SPAN-capable network switch. T
    $ nmcli con add con-name vlan300 ifname vlan300 type vlan dev eno1 id 300 ipv4.method manual ipv6.method disabled ipv4.method disabled
    # ovs-vsctl add-br vsbr0
    # ovs-vsctl add-port vsbr0 vlan300
-   # ovs-vsctl -- --id=@vlan300 get port eno1 --id=@m create mirror so-monitor select_all=true output_port=@vlan300 -- add bridge vsbr0 mirrors @m
+   # ovs-vsctl -- --id=@vlan300 get port vlan300 --id=@m create mirror so-monitor select_all=true output_port=@vlan300 -- add bridge vsbr0 mirrors @m
 ```
 
 Once again, replace `eno1` with the actual wired interface you have. For troubleshooting purpose, it might be good to familiarize yourself with the following command:
