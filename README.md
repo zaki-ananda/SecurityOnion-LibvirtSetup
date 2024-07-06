@@ -72,7 +72,7 @@ This VLAN will be used for management network, so that any host connected here w
    $ nmcli con add con-name vlan100 ifname vlan100 type vlan dev enp1s0 id 100 master virbr0 ipv4.method disabled ipv6.method disabled 
 ```
 
-In particular, change `enp1s0` to the name of the physical ethernet interface on Laptop 2.
+In particular, change `enp1s0` to the name of the physical ethernet interface on Laptop 1.
 
 #### 1.3.3. Create `vlan300` and connect it to `vnet2` (sniffing interface)
 This VLAN will be used for sniffing network. Keep in mind that this setup tries to emulate SPAN port forwarding. In particular, **any interface involved must not have IP addressing**, since the whole thing runs on OSI Layer 2 (data-link layer). 
