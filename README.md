@@ -134,7 +134,7 @@ Once again, replace `eno1` with the actual wired interface you have. For trouble
    # ovs-vsctl remove <table> <record> <column> <value>
    # ovs-vsctl clear <table> <record> <column>
    # ovs-vsctl set <table> <record> <column>
-   # ovs-vsctl get <table> Mrecord> <column>
+   # ovs-vsctl get <table> <record> <column>
 ```
 More information can be obtained [here](https://backreference.org/2014/06/17/port-mirroring-with-linux-bridges/index.html) and [here](https://www.man7.org/linux/man-pages/man8/ovs-vsctl.8.html)
 
