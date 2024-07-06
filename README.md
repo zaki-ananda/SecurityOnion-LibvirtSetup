@@ -106,19 +106,25 @@ You might also want to disable the wired interface IP addressing.
 
 After that, try to access the management console via browser. If you've forgotten the IP address of the Security Onion installation, you can view it from the VM instance itself and running `ip addr` (there should be only one wired interface with an IP address, as mentioned before).
 
+By this point, this is what we've managed to set up.
+![Diagram](https://github.com/zaki-ananda/SecurityOnion-LibvirtSetup/blob/main/Security%20Onion%20-%20Two%20Laptop-Page-4.drawio.png)
+
+<br>
+
 ## 2.2. Creating Network Simulation
-In Laptop 1, we've created VLAN 300 for sniffing network. In Laptop 1, we'll create a network simulation that it can sniff from. There are three things that we need to accomplish here:
+In Laptop 1, we've created VLAN 300 for sniffing network. In Laptop 1, we'll create a network simulation that it can sniff from. There are two things that we need to accomplish here:
 
 ### 2.2.1. Creating Network Switch
 Here, I'm using OpenvSwitch in order to emulate a SPAN-capable network switch. This is done by the following command:
 ```
+   $ nmcli con add con-name vlan300 ifname vlan300 type vlan dev eno1 id 300 ipv4.method manual ipv6.method disabled ipv4.method disabled
    # ovs-vsctl add-br vsbr0
-   # ovs-vsctl add-port vsbr0 eno1
    # ovs-vsctl add-port vsbr0 vlan300
-   # ovs-vsctl -- --id=@eno1 get port eno1 --id=@m create mirror so-monitor select_all=true output_port=@eno1 -- add bridge vsbr0 mirrors @m
+   # ovs-vsctl -- --id=@vlan300 get port eno1 --id=@m create mirror so-monitor select_all=true output_port=@vlan300 -- add bridge vsbr0 mirrors @m
 ```
 
 Once again, replace `eno1` with the actual wired interface you have. For troubleshooting purpose, it might be good to familiarize yourself with the following command:
+
 ```
    # ovs-vsctl show
    # ovs-vsctl list bridge
@@ -132,9 +138,17 @@ Once again, replace `eno1` with the actual wired interface you have. For trouble
 ```
 More information can be obtained [here](https://backreference.org/2014/06/17/port-mirroring-with-linux-bridges/index.html) and [here](https://www.man7.org/linux/man-pages/man8/ovs-vsctl.8.html)
 
+By this point, this is what we've managed to set up.
+![Diagram](https://github.com/zaki-ananda/SecurityOnion-LibvirtSetup/blob/main/Security%20Onion%20-%20Two%20Laptop-Page-5.drawio.png)
+
 ### 2.2.2. Creating Network Host
 I recommend using a Kali Linux Live ISO as hosts, so that they won't need any persistent storage on the Laptop 2's storage drive, and so that you can simulate actual attack scenarios using pre-installed tools. I'm also assuming that you're using virt-manager (or libvirt) to set up the network host. I won't go over the installation process here (as it should be intuitive enough, if you've managed to reach here), but one thing to note is that **you need to change the XML config for each of the VM instance's NIC, so that it can connect to the OpenvSwitch network bridge**. More information can be seen [here](https://docs.openvswitch.org/en/latest/howto/libvirt/). For virt-manager GUI, you might need to enable XML editing first (Main window - Edit - Preferences - Enable XML editing)
 
+Finally, this is what we've done so far.
+![Diagram](https://github.com/zaki-ananda/SecurityOnion-LibvirtSetup/blob/main/Security%20Onion%20-%20Two%20Laptop-Page-6.drawio.png)
+
+## 3. Simulation
+Now, on each of the network host, try to ping each other. Then, try to use NMAP to simulate reconnaisance attack scenarios (eg: `nmap -sS <victim_host_ip>`). Some alerts should pop up on the Security Onion COnsole.
 
 
 
