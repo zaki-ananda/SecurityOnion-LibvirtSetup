@@ -148,7 +148,7 @@ Finally, this is what we've done so far.
 ![Diagram](https://github.com/zaki-ananda/SecurityOnion-LibvirtSetup/blob/main/Security%20Onion%20-%20Two%20Laptop-Page-6.drawio.png)
 
 ## 3. Simulation
-Now, on each of the network host, try to ping each other. Then, try to use NMAP to simulate reconnaisance attack scenarios (eg: `nmap -sS <victim_host_ip>`). Some alerts should pop up on the Security Onion COnsole.
+Now, on each of the network host, try to ping each other. Then, try to use NMAP to simulate reconnaisance attack scenarios (eg: `nmap -sS <victim_host_ip>`). Some alerts should pop up on the Security Onion Console.
 
 
 
